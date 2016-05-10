@@ -2,6 +2,7 @@
 using System;
 using System.Net.Http;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace UltiTest
 {
@@ -14,6 +15,7 @@ namespace UltiTest
                                        "Database=TRAINING;" +
                                        "connection timeout=30");
 
+            string json = "fail";
             try
             {
                 myConnection.Open();
@@ -23,16 +25,30 @@ namespace UltiTest
 
                 SqlDataReader myReader = null;
                 myReader = myCommand.ExecuteReader();
+                IList<Employee> list = new List<Employee>();
                 while (myReader.Read())
                 {
-                    Console.WriteLine(myReader["ID"].ToString());
+                    String ID = myReader["ID"].ToString();
+                    String fname = myReader["FirstName"].ToString();
+                    String lname = myReader["LastName"].ToString();
+                    String addr = myReader["Address"].ToString();
+                    Employee emp = new Employee(ID, fname, lname, addr);
+                    list.Add(emp);
+                    //Console.WriteLine(myReader["ID"].ToString());
                 }
+                json = Serializer.Serialize(list);
+                ValuesController.json = json;
 
+                myConnection.Close();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
+
+            //Console.WriteLine(json);
+
+            // Serializer.Test();
 
             string baseAddress = "http://localhost:9000/";
 
