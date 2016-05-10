@@ -1,6 +1,8 @@
 ﻿
+using System;
 using Owin;
 using System.Web.Http;
+using Newtonsoft.Json;
 
 namespace UltiTest
 {
@@ -11,14 +13,14 @@ namespace UltiTest
         public void Configuration(IAppBuilder appBuilder)
         {
             // Configure Web API for self-host. 
-            HttpConfiguration config = new HttpConfiguration();
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                HttpConfiguration config = new HttpConfiguration();
+                config.Routes.MapHttpRoute(
+                    name: "DefaultApi",
+                    routeTemplate: "api/{controller}/{id}",
+                    defaults: new { id = RouteParameter.Optional }
+                );
 
-            appBuilder.UseWebApi(config);
+                appBuilder.UseWebApi(config);
         }
     }
 }
