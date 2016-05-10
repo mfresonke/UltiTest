@@ -5,11 +5,11 @@ namespace UltiTest
 {
     public class ValuesController : ApiController
     {
-        public static string json;
+        public static string Json { get; set; }
         // GET api/values 
         public string Get()
         {
-            return json;
+            return Json;
         }
 
         // GET api/values/5 
