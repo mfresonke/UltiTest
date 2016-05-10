@@ -1,7 +1,8 @@
 ﻿
 funnction makeEmp(emp)
 {
-    var employee = {
+    var employee;
+    return employee = {
         ID: 0,
         firstName: "",
         lastName: "",

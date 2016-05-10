@@ -9,8 +9,6 @@
             employeeArr = data.response.response.Table;
             forEach(employee in employeeArr)
             {
-                printedArr = new employee()
-
 
             }
             return data;
